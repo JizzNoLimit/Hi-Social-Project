@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi-Social - Media Social Management</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind.config.js -->
+    <script>
+        tailwind.config = {
+            theme: {
+                screens: {
+                    'sm': '640px',
+                    // => @media (min-width: 576px) { ... }
+
+                    'md': '768px',
+                    // => @media (min-width: 960px) { ... }
+
+                    'lg': '1024px',
+                    // => @media (min-width: 1280px) { ... }
+
+                    'xl': '1366px',
+                    // => @media (min-width: 1438px) { ... }
+                },
+                extend: {
+                    colors: {
+                        'white': '#fff',
+
+                        'pb-normal-active': '#012033',
+                        'pb-draker': '#000e16',
+
+                        'p-normal': '#008fff',
+                        'p-dark-hover': '#004073',
+                    },
+                    fontFamily: {
+                        "plus-jakarta-sans": "Plus Jakarta Sans",
+                        "inter": "Inter",
+                    },
+                    dropShadow: {
+                        navbar: '0px 5px 20px rgba(0, 0, 0, 0.17)',
+                        card: '-5px 6px 22px rgba(0, 0, 0, 0.25)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            h1,h2,h3,h4,h5,h6 {
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-weight: 700;
+            }
+            p, a, span, li { font-family: 'Inter', sans-serif; }
+            button {font-weight: 700;}
+        }
+
+        @layer components {
+            .input {
+                @apply py-3 px-3 text-sm text-white placeholder:text-white outline-none bg-[#2563EB] border rounded-lg
+            }
+            .btn-outline {
+                @apply bg-white border border-blue-500 text-blue-500 px-3 py-2 ;
+            }
+            .btn-blue {
+                @apply bg-blue-500 px-4 py-2  hover:bg-blue-600 active:bg-blue-700 text-white;
+            }
+            .btn-dark {
+                @apply bg-blue-500 px-4 py-2  hover:bg-blue-600 active:bg-blue-700 text-white;
+            }
+            .btn-yellow {
+                @apply bg-yellow-500 px-3 py-2  hover:bg-yellow-600 active:bg-yellow-700 text-white;
+            }
+            .btn-white {
+                @apply bg-white px-3 py-2  hover:bg-gray-100 active:bg-gray-200;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Navbar -->
+        <nav class="w-full sticky top-0 h-auto px-6 lg:px-32 xl:px-0 bg-white drop-shadow-navbar z-50">
+            <div class="relative flex items-center justify-between max-w-[1180px] w-full h-[74px] lg:h-20 xl:h-[100px] mx-auto">
+                <img 
+                    src="./asset/img/hi-social.svg"
+                    class="cursor-pointer h-11 lg:h-12 xl:h-14"
+                    alt="logo hi-social"
+                >
+                <ul class="hidden lg:flex items-center space-x-7 xl:space-x-10">
+                    <li class="hover:text-gray-400">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="hover:text-gray-400">
+                        <a href="/">Service</a>
+                    </li>
+                    <li class="hover:text-gray-400">
+                        <a href="/">Portofolio</a>
+                    </li>
+                    <li class="hover:text-gray-400">
+                        <a href="/">About Us</a>
+                    </li>
+                    <li>
+                        <a href="/">
+                            <button class="bg-blue-500 px-4 py-2 ml-6 text-white rounded-full hover:bg-blue-600 active:bg-blue-700">Contact Us</button>
+                        </a>
+                    </li>
+                </ul>
+                <button class="menu-btn lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <div class="nav-menu fixed w-screen h-[calc(100vh-74px)] lg:hidden left-0 right-0 -top-[100vh] px-6 py-8 bg-white z-40 opacity-40 transition-all duration-700">
+            <ul class="font-bold space-y-2">
+                <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                    <a href="#">Home</a>
+                </li>
+                <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                    <a href="#">Service</a>
+                </li>
+                <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                    <a href="#">Portofolio</a>
+                </li>
+                <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                    <a href="#">About Us</a>
+                </li>
+                <li class="pt-8">
+                    <a href="#">
+                        <button class="bg-blue-500 w-full lg:w-auto px-4 py-2 text-white rounded-full hover:bg-blue-600 active:bg-blue-700">Contact Us</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Akhir Navbar -->
+
+        <!-- Hero -->
+        <div class="relative w-[100vw-1px] h-[calc(100vh-74px)] lg:h-[calc(100vh-80px)] xl:h-[calc(100vh-100px)] mx-auto">
+            <img 
+                src="./asset/img/banner-social-media-management.png"
+                class="relative w-full h-full object-cover object-center z-10"
+                alt="gambar hero"
+            >
+            <div class="absolute left-0 right-0 px-6 lg:px-0 text-left top-[16%] md:top-[16%] font-plus-jakarta-sans md:text-center space-y-4 lg:space-y-6 xl:space-y-9 z-20">
+                <h1 class="text-3xl lg:text-5xl xl:text-6xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">Unlock the Power of Social Media with<br class="hidden md:block"/>Our <span class="text-p-normal">Expert Management Service</span></h1>
+                <p class="font-normal leading-relaxed lg:leading-normal text-sm lg:text-base xl:text-xl">Welcome to Hisocial your trusted partner in navigating the dynamic world of social media. We understand that managing<br class="hidden md:block"/> your social media presence can be overwhelming. That's why we're here to offer you a comprehensive Social Media<br class="hidden md:block"/>Management Service that takes your brand to the next level.</p>
+                <div>
+                    <button class="btn-blue w-full md:w-auto lg:px-14 lg:py-3 xl:px-16 xl:py-4 mt-12 lg:mt-6 xl:mt-8 font-bold xl:text-xl rounded-full lg:rounded-xl">Get Started</button>
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Hero -->
+
+        <!-- Corporate Colaboration -->
+        <div class="relative w-full h-64 xl:h-[260px] bg-p-dark-hover overflow-hidden">
+            <div class="absolute top-0 left-0 w-[1640px] h-[820px] xl:w-[1899px] xl:h-[949px] rounded-[50%] bg-[#005699] z-10"></div>
+            <div class="relative flex flex-col justify-center w-full h-full px-6 md:px-0 text-center space-y-8 z-20 text-white">
+                <p class="xl:text-xl">We Have Collaborated With Companies And Educational Agencies.</p>
+                <div class="grid grid-cols-2 gap-8 md:flex justify-center md:space-x-8">
+                    <img src="./asset/img/sisko-logo.png" class="h-8 md:h-auto mx-auto md:mx-0" alt="logo elvron" />
+                    <img src="./asset/img/eduwork-logo.png" class="h-8 md:h-auto mx-auto md:mx-0" alt="logo eduwork" />
+                    <img src="./asset/img/upscale-logo.png" class="h-8 md:h-auto mx-auto md:mx-0" alt="logo upscale" />
+                    <img src="./asset/img/sisko-logo.png" class="h-8 md:h-auto mx-auto md:mx-0" alt="logo sisko" />
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Corporate Colaboration -->
+
+        <!-- Why Choose Us -->
+        <div class="w-full px-6 md:px-32 xl:px-0 py-11">
+            <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-9 xl:gap-11 max-w-[1180px] w-full mx-auto">
+                <div class="flex pb-2 md:pb-0 justify-center md:justify-start items-center">
+                    <h1 class="text-3xl lg:text-5xl xl:text-6xl text-center md:text-left font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">Why you should <span class="block text-p-normal">choose us?</span></h1>
+                </div>
+                <div class="md:h-64 xl:h-[282px] pt-9 pb-7 md:pb-0 lg:pt-10 px-7 lg:px-9 space-y-3 lg:space-y-4  rounded-xl bg-white drop-shadow-card">
+                    <div class="flex items-center gap-2 xl:gap-3">
+                        <img src="./asset/icon/expertise-that-matters.svg" alt="icon" class="w-7 lg:w-9" />
+                        <h4 class="text-base lg:text-xl xl:text-2xl font-bold">Expertise That Matters</h4>
+                    </div>
+                    <p class="text-sm lg:text-base text-justify">At Hisocial, our team consists of social media experts who live and breathe the digital landscape. We stay ahead of trends, algorithms, and updates to ensure your brand remains relevant and engaging.</p>
+                </div>
+                <div class="md:h-64 xl:h-[282px] pt-9 pb-7 md:pb-0 lg:pt-10 px-7 lg:px-9 space-y-3 lg:space-y-4  rounded-xl bg-white drop-shadow-card">
+                    <div class="flex items-center gap-2 xl:gap-3">
+                        <img src="./asset/icon/tailored-strategies.svg" alt="icon" class="w-7 lg:w-9" />
+                        <h4 class="text-base lg:text-xl xl:text-2xl font-bold">Tailored Strategies</h4>
+                    </div>
+                    <p class="text-sm lg:text-base text-justify">We know that one size doesn't fit all. We'll craft a customized social media strategy to meet your unique goals and objectives. Whether it's increasing brand awareness, driving leads, or boosting sales, we've got you covered.</p>
+                </div>
+                <div class="md:h-64 xl:h-[282px] pt-9 pb-7 md:pb-0 lg:pt-10 px-7 lg:px-9 space-y-3 lg:space-y-4  rounded-xl bg-white drop-shadow-card">
+                    <div class="flex items-center gap-2 xl:gap-3">
+                        <img src="./asset/icon/content-that-captivates.svg" alt="icon" class="w-7 lg:w-9" />
+                        <h4 class="text-base lg:text-xl xl:text-2xl font-bold">Content That Captivates</h4>
+                    </div>
+                    <p class="text-sm lg:text-base text-justify">Our skilled content creators know how to craft compelling, shareable content that resonates with your target audience. From eye-catching visuals to engaging captions, we'll make sure your brand shines.</p>
+                </div>
+                <div class="md:h-64 xl:h-[282px] pt-9 pb-7 md:pb-0 lg:pt-10 px-7 lg:px-9 space-y-3 lg:space-y-4  rounded-xl bg-white drop-shadow-card">
+                    <div class="flex items-center gap-2 xl:gap-3">
+                        <img src='./asset/icon/consistent-engagement.svg' alt="icon" class="w-7 lg:w-9" />
+                        <h4 class="text-base lg:text-xl xl:text-2xl font-bold">Consistent Engagement</h4>
+                    </div>
+                    <p class="text-sm lg:text-base text-justify">Social media is all about being social! We'll engage with your followers, respond to comments, and foster a community around your brand, increasing loyalty and trust.</p>
+                </div>
+                <div class="md:h-64 xl:h-[282px] pt-9 pb-7 md:pb-0 lg:pt-10 px-7 lg:px-9 space-y-3 lg:space-y-4  rounded-xl bg-white drop-shadow-card">
+                    <div class="flex items-center gap-2 xl:gap-3">
+                        <img src="./asset/icon/data-driven-insights.svg" alt="icon" class="w-7 lg:w-9" />
+                        <h4 class="text-base lg:text-xl xl:text-2xl font-bold">Data-Driven Insights</h4>
+                    </div>
+                    <p class="text-sm lg:text-base text-justify">We don't guess; we measure. Our data analysts will provide you with regular reports, allowing you to see the impact of our efforts and make informed decisions.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Why Choose Us -->
+
+        <!-- Media Social Stategy -->
+        <div class="px-6 md:px-32 xl:px-0">
+            <div class="flex flex-col md:flex-row items-center gap-6 max-w-[1180px] w-full mx-auto py-10">
+                <div class="grid grid-cols-2 grid-rows-2 gap-3 md:gap-4 flex-1">
+                    <img src="./asset/img/social-media-strategy-1.png" alt="social media stategi image" />
+                    <img src="./asset/img/social-media-strategy-2.png" alt="social media stategi image" />
+                    <img src="./asset/img/social-media-strategy-3.png" alt="social media stategi image" />
+                    <img src="./asset/img/social-media-strategy-4.png" alt="social media stategi image" />
+                </div>
+                <div class="flex-1 text-left md:text-right">
+                    <h1 class="text-2xl lg:text-4xl xl:text-5xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">Social Media Strategy</h1>
+                    <p class="mt-4 xl:mt-5 lg:pl-8 text-lg xl:text-2xl">We'll work closely with you to develop a comprehensive social media strategy aligned with your business objectives.</p>
+                    <button class="btn-blue w-full md:w-auto lg:px-12 lg:py-2 xl:px-14 xl:py-3 mt-8 lg:mt-11 xl:mt-11 font-bold xl:text-xl rounded-xl">Learn more</button>
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Media Social Stategy -->
+
+        <!-- Content Creation -->
+        <div class="px-6 lg:px-32 xl:px-0">
+            <div class="flex flex-col lg:flex-row gap-6 items-center max-w-[1180px] w-full mx-auto py-10 overflow-hidden">
+                <div class="relative md:hidden w-full h-[calc(100vh-60vh)] bg-yellow-400 overflow-hidden rounded-xl">
+                    <img src="./asset/img/content-creation-phone1.svg"
+                        class="absolute top-[10%] left-0 right-0 xl:left-[20%] w-[80%] mx-auto drop-shadow-[-11px_6px_12px_rgba(0,0,0,0.27)] z-20"
+                        alt="conten creation image" />
+                    <img src="./asset/img/content-creation-phone2.svg"
+                        class="absolute bottom-[10%] -right-[10%] w-[222px] drop-shadow-[-11px_6px_12px_rgba(0,0,0,0.27)] z-10"
+                        alt="conten creation image" />
+                </div>
+                <div class="flex-[38%]">
+                    <h1
+                        class="text-2xl lg:text-4xl xl:text-5xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">
+                        Content Creation</h1>
+                    <p class="mt-4 xl:mt-5 text-lg xl:text-2xl">Our talented content creators will design eye-catching
+                        visuals and craft engaging copy that resonates with your audience.</p>
+                    <button
+                        class="btn-blue w-full md:w-auto lg:px-12 lg:py-2 xl:px-14 xl:py-3 mt-8 lg:mt-11 xl:mt-11 font-bold xl:text-xl rounded-xl">Learn
+                        more</button>
+                </div>
+                <div class="relative hidden lg:block lg:flex-[62%]">
+                    <img src="./asset/img/content-creation-bg.svg" class="object-cover lg:relative" alt="conten creation image" />
+                    <img src="./asset/img/content-creation-phone1.svg"
+                        class="absolute top-0 lg:left-[23%] xl:left-[20%] w-[182px] xl:w-auto drop-shadow-[-11px_6px_12px_rgba(0,0,0,0.27)] z-10"
+                        alt="conten creation image" />
+                    <img src="./asset/img/content-creation-phone2.svg"
+                        class="absolute bottom-0 lg:right-[14%] xl:right-[20%] w-[182px] xl:w-auto drop-shadow-[-11px_6px_12px_rgba(0,0,0,0.27)] z-10"
+                        alt="conten creation image" />
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Content Creation -->
+
+        <!-- Community Management -->
+        <div class="px-6 lg:px-32 xl:px-0">
+            <div class="flex items-center max-w-[1180px] w-full mx-auto py-10">
+                <div class="flex items-center gap-8 w-full bg-[#B9E0FF] px-6 md:px-8 py-8 rounded-xl">
+                    <div class="hidden lg:grid grid-cols-2 gap-4 flex-[42%]">
+                        <img src="./asset/img/community-management1.png" class="drop-shadow-[7px_4px_10px_rgba(0,0,0,0.25)]"
+                            alt="gambar community management" />
+                        <img src="./asset/img/community-management2.png" class="drop-shadow-[7px_4px_10px_rgba(0,0,0,0.25)]"
+                            alt="gambar community management" />
+                        <img src="./asset/img/community-management3.png" class="drop-shadow-[7px_4px_10px_rgba(0,0,0,0.25)] col-span-2"
+                            alt="gambar community management" />
+                    </div>
+                    <div class="flex-[58%] text-left md:text-right lg:pr-4">
+                        <h1
+                            class="text-2xl lg:text-4xl xl:text-5xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">
+                            Community Management
+                        </h1>
+                        <p class="mt-4 xl:mt-5 text-lg xl:text-2xl lg:pl-16">Our talented content creators will design
+                            eye-catching visuals and craft engaging copy that resonates with your audience.</p>
+                        <button
+                            class="btn-blue w-full md:w-auto lg:px-12 lg:py-2 xl:px-14 xl:py-3 mt-6 lg:mt-8 xl:mt-10 font-bold xl:text-xl rounded-xl">Learn
+                            more</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Community Management -->
+
+        <!-- Paid Advertising -->
+        <div class="px-6 lg:px-32 xl:px-0">
+            <div class="relative max-w-[1180px] w-full mx-auto py-10">
+                <div class="relative flex justify-center items-center">
+                    <div
+                        class="lg:absolute lg:w-[65%] lg:h-[84%] lg:top-[50%] lg:bottom-[50%] lg:left-0 lg:right-0 px-6 lg:px-10 py-8 lg:py-8 bg-white border-2 z-10 lg:-translate-y-[50%] rounded-xl lg:rounded-none">
+                        <h1
+                            class="text-2xl lg:text-4xl xl:text-5xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">
+                            Paid Advertising</h1>
+                        <p class="mt-4 xl:mt-5 text-lg xl:text-2xl">Boost your reach and drive conversions with our targeted
+                            social media advertising campaigns.</p>
+                        <button
+                            class="btn-blue w-full md:w-auto lg:px-12 lg:py-2 xl:px-14 xl:py-3 mt-8 lg:mt-7 xl:mt-9 font-bold xl:text-xl rounded-xl">Learn
+                            more</button>
+                    </div>
+                    <div class="relative flex-1 w-full">
+                    </div>
+                    <div class="relative hidden lg:block flex-1 rounded-xl overflow-hidden">
+                        <img src="./asset/img/paid-advertising.png" alt="gambar paid advertising" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Paid Advertising -->
+
+        <!-- Analytic Reporting -->
+        <div class="px-6 lg:px-32 xl:px-0 py-11">
+            <div class="flex flex-col md:flex-row items-center gap-6 lg:gap-0 max-w-[1180px] w-full mx-auto px-6 lg:px-0 py-8 lg:py-10 border-2 lg:border-none rounded-xl md:rounded-none">
+                <div class="w-full h-[calc(100vh-70vh)] md:h-auto lg:flex-1 overflow-hidden">
+                    <img src="./asset/img/analytic-and-reporting.svg" class="h-[518px] xl:h-[548px] -mt-[80px] md:mt-0" alt="gambar analytic and reporting" />
+                </div>
+                <div class="flex-1 text-left md:text-right">
+                    <h1
+                        class="text-2xl lg:text-4xl xl:text-5xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">
+                        Analytics & Reporting</h1>
+                    <p class="mt-4 xl:mt-5 text-lg xl:text-2xl">Access valuable insights into your social media performance,
+                        allowing you to make data-driven decisions.</p>
+                    <button
+                        class="btn-blue w-full lg:w-auto lg:px-12 lg:py-2 xl:px-14 xl:py-3 mt-8 lg:mt-7 xl:mt-9 font-bold xl:text-xl rounded-xl">Learn
+                        more</button>
+                </div>
+            </div>
+        </div>
+        <!-- Analytic Reporting -->
+
+        <!-- Our Success Project -->
+        <div class="relative w-full px-6 lg:px-32 xl:px-0 bg-[#B8E0FF] overflow-hidden">
+            <div
+                class="absolute -bottom-[12px] -right-[220px] w-[284px] h-[284px] border-white border-[8px] rounded-full z-0 ">
+            </div>
+            <div class="absolute -top-[12px] -left-[220px] w-[284px] h-[284px] border-white border-[8px] rounded-full z-0 ">
+            </div>
+            <div class="relative max-w-[1180px] w-full mx-auto pt-16 pb-10 z-10">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <h1
+                        class="text-2xl lg:text-4xl xl:text-5xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">
+                        Paid Advertising</h1>
+                    <button
+                        class="btn-blue px-6 lg:px-12 lg:py-2 xl:px-14 xl:py-3 mt-6 lg:mt-7 xl:mt-9 font-bold xl:text-xl rounded-full lg:rounded-xl">Learn
+                        more</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 py-8">
+                    <div class="space-y-5 p-4 text-right bg-white rounded-xl lg:rounded-none lg:rounded-tl-xl">
+                        <div class="rounded-lg overflow-hidden">
+                            <img src="./asset/img/our-success-project1.png" alt="gambar our success project" />
+                        </div>
+                        <div class="pb-2 font-bold">
+                            <h4>Ice Cream Cake</h4>
+                        </div>
+                    </div>
+                    <div class="space-y-5 p-4 text-right bg-white rounded-xl lg:rounded-none">
+                        <div class="rounded-lg overflow-hidden">
+                            <img src="./asset/img/our-success-project2.png" alt="gambar our success project" />
+                        </div>
+                        <div class="pb-2 font-bold">
+                            <h4>Ice Cream Cake</h4>
+                        </div>
+                    </div>
+                    <div class="space-y-5 p-4 text-right bg-white rounded-xl lg:rounded-none lg:rounded-tr-xl">
+                        <div class="rounded-lg overflow-hidden">
+                            <img src="./asset/img/our-success-project3.png" alt="gambar our success project" />
+                        </div>
+                        <div class="pb-2 font-bold">
+                            <h4>Ice Cream Cake</h4>
+                        </div>
+                    </div>
+                    <div class="space-y-5 p-4 text-right bg-white rounded-xl lg:rounded-none lg:rounded-bl-xl">
+                        <div class="rounded-lg overflow-hidden">
+                            <img src="./asset/img/our-success-project4.png" alt="gambar our success project" />
+                        </div>
+                        <div class="pb-2 font-bold">
+                            <h4>Ice Cream Cake</h4>
+                        </div>
+                    </div>
+                    <div class="space-y-5 p-4 text-right bg-white rounded-xl lg:rounded-none">
+                        <div class="rounded-lg overflow-hidden">
+                            <img src="./asset/img/our-success-project5.png" alt="gambar our success project" />
+                        </div>
+                        <div class="pb-2 font-bold">
+                            <h4>Ice Cream Cake</h4>
+                        </div>
+                    </div>
+                    <div class="space-y-5 p-4 text-right bg-white rounded-xl lg:rounded-none lg:rounded-br-xl">
+                        <div class="rounded-lg overflow-hidden">
+                            <img src="./asset/img/our-success-project6.png" alt="gambar our success project" />
+                        </div>
+                        <div class="pb-2 font-bold">
+                            <h4>Ice Cream Cake</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Our Success Project -->
+        <div class="w-full px-6 lg:px-32 xl:px-0 py-20">
+            <div
+                class="relative lg:flex gap-6 max-w-[1180px] w-full mx-auto p-8 bg-[#E6F1FA] rounded-2xl overflow-hidden lg:overflow-visible">
+                <img src="./asset/img/client-say-texture.svg"
+                    class="absolute lg:top-0 lg:bottom-0 right-0 lg:right-0 h-[200px] max-w-none lg:max-w-full lg:h-full z-0"
+                    alt="texture" />
+                <div class="absolute hidden lg:block -top-[10%] right-[4%] space-y-4">
+                    <img src="./asset/img/client-say1.svg" class=" h-[106px] xl:h-auto drop-shadow-[-4px_4px_8px_rgba(0,0,0,0.25)]"
+                        alt="gambar client say" />
+                    <img src="./asset/img/client-say2.svg"
+                        class=" h-[106px] xl:h-auto -translate-x-[60%] drop-shadow-[-4px_4px_8px_rgba(0,0,0,0.25)]"
+                        alt="gambar client say" />
+                </div>
+                <div class="relative flex-[40%] z-10">
+                    <h1
+                        class="text-2xl lg:text-4xl xl:text-5xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">
+                        What our Happy<br />Client say.</h1>
+                    <p class="mt-4 xl:mt-5 text-lg xl:text-2xl">Recommendations from satisfied costumers that offirm the
+                        value of a product or service.</p>
+                </div>
+                <div class="hidden lg:block flex-[60%]">
+        
+                </div>
+            </div>
+        </div>
+        <!-- Client Say -->
+
+        <!-- Design Prices -->
+        <div class="w-full px-6 lg:px-32 xl:px-0">
+            <div class="max-w-[1180px] w-full mx-auto">
+                <h1
+                    class="text-2xl lg:text-4xl xl:text-5xl font-bold text-center lg:leading-tight xl:leading-tight text-pb-normal-active">
+                    Design <span class="text-p-normal">Prices</span></h1>
+                <p class="mt-4 xl:mt-5 text-base lg:text-lg xl:text-2xl text-center">Professional and best Logo and Branding Identity
+                    Service Packages at the lowest costs.</p>
+                <div class="my-8 bg-white drop-shadow-[0px_5px_20px_rgba(0,0,0,0.10)] rounded-xl overflow-hidden ">
+                    <div class="flex flex-col lg:flex-row lg:gap-4">
+                        <div class="flex-1 px-10 pt-16 pb-10 text-center hover:rounded-br-xl">
+                            <h4 class="text-xl xl:text-2xl font-bold text-p-normal">HiBronze</h4>
+                            <p class="mt-3 text-2xl font-bold">IDR 1.500.000</p>
+                            <p class="text-sm text-[#4B5768]">/ Month</p>
+                            <button
+                                class="btn-outline w-full mt-6 font-bold group-hover:text-pb-normal-active group-hover:bg-[#EDC700] rounded-full text-sm xl:text-base">Get
+                                Started Now</button>
+                        </div>
+                        <div
+                            class="group flex-1 px-10 pt-16 pb-10 text-center bg-p-normal text-white  rounded-bl-xl rounded-br-xl">
+                            <h4 class="text-xl xl:text-2xl font-bold text-white">HiBronze</h4>
+                            <p class="mt-3 text-2xl font-bold">IDR 1.500.000</p>
+                            <p class="text-sm text-[#E6EAEC]">/ Month</p>
+                            <button
+                                class="btn-outline w-full mt-6 font-bold text-pb-normal-active bg-[#EDC700] hover:bg-[#edaa00] rounded-full text-sm xl:text-base">Get
+                                Started Now</button>
+                        </div>
+                        <div class="flex-1 px-10 pt-16 pb-10 text-center hover:rounded-br-xl">
+                            <h4 class="text-xl xl:text-2xl font-bold text-p-normal">HiBronze</h4>
+                            <p class="mt-3 text-2xl font-bold">IDR 1.500.000</p>
+                            <p class="text-sm text-[#4B5768]">/ Month</p>
+                            <button
+                                class="btn-outline w-full mt-6 font-bold group-hover:text-pb-normal-active group-hover:bg-[#EDC700] rounded-full text-sm xl:text-base">Get
+                                Started Now</button>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex px-10 pt-20 pb-11">
+                        <div class="flex-1 text-[#002B44]">
+                            <h4 class="font-bold xl:text-2xl">Benefits</h4>
+                            <ul class="mt-5 lg:space-y-[14px] xl:space-y-[13px] xl:text-2xl">
+                                <li>Content Feeds & Story</li>
+                                <li>Reels & TikTok Videos</li>
+                                <li>Dashboard Content</li>
+                                <li>Copywriting & Hastag</li>
+                                <li>Monthly Report & Consultation</li>
+                                <li>Boost marketing adverstisement</li>
+                                <li>Free company website/ Personal</li>
+                                <li>Digital marketing lerning videos</li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 xl:text-2xl">
+                            <div class="flex text-center">
+                                <h4 class="flex-1 font-bold">HiBronze</h4>
+                                <h4 class="flex-1 font-bold">HiSilver</h4>
+                                <h4 class="flex-1 font-bold">HiGold</h4>
+                            </div>
+                            <div class="mt-4 text-[#6FBFFF] text-base xl:text-2xl">
+                                <div class="flex pt-2 text-center font-bold border-b border-b-[#D9EEFF]">
+                                    <h4 class="flex-1 opacity-60">30</h4>
+                                    <h4 class="flex-1">60</h4>
+                                    <h4 class="flex-1 opacity-60">90</h4>
+                                </div>
+                                <div class="flex pt-[10px] xl:pt-3 text-center font-bold border-b border-b-[#D9EEFF]">
+                                    <h4 class="flex-1 opacity-60">4</h4>
+                                    <h4 class="flex-1">8</h4>
+                                    <h4 class="flex-1 opacity-60">12</h4>
+                                </div>
+                                <div
+                                    class="flex pt-[10px] xl:pt-3 pb-2 text-center font-semibold border-b border-b-[#D9EEFF]">
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6"><img src="./asset/icon/check-circle.svg"
+                                            alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                </div>
+                                <div
+                                    class="flex pt-[10px] xl:pt-3 pb-2 text-center font-semibold border-b border-b-[#D9EEFF]">
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6"><img src="./asset/icon/check-circle.svg"
+                                            alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                </div>
+                                <div
+                                    class="flex pt-[10px] xl:pt-3 pb-2 text-center font-semibold border-b border-b-[#D9EEFF]">
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6"><img src="./asset/icon/check-circle.svg"
+                                            alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                </div>
+                                <div
+                                    class="flex pt-[10px] xl:pt-3 pb-2 text-center font-semibold border-b border-b-[#D9EEFF]">
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6"><img src="./asset/icon/check-circle.svg"
+                                            alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                </div>
+                                <div
+                                    class="flex pt-[10px] xl:pt-3 pb-2 text-center font-semibold border-b border-b-[#D9EEFF]">
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6"><img src="./asset/icon/check-circle.svg"
+                                            alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                </div>
+                                <div
+                                    class="flex pt-[10px] xl:pt-3 pb-2 text-center font-semibold border-b border-b-[#D9EEFF]">
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6"><img src="./asset/icon/check-circle.svg"
+                                            alt="icon check" /></h4>
+                                    <h4 class="flex justify-center flex-1 lg:h-[20px] xl:h-6 opacity-60"><img
+                                            src="./asset/icon/check-circle.svg" alt="icon check" /></h4>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Design Prices -->
+
+        <!-- Transforms Your Brands -->
+        <div class="px-6 lg:px-32 xl:px-0 py-11">
+            <div class="max-w-[1180px] w-full mx-auto pt-6 pb-20 lg:px-20 text-center">
+                <h1
+                    class="px-6 lg:px-0 text-2xl lg:text-4xl xl:text-5xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">
+                    Ready to transform your brand?</h1>
+                <p class="mt-4 xl:mt-5 text-lg xl:text-2xl">Our talented content creators will design eye-catching visuals
+                    and craft engaging copy that resonates with your audience.</p>
+                <button
+                    class="btn-blue px-6 lg:px-12 lg:py-3 xl:px-14 xl:py-4 mt-8 lg:mt-11 xl:mt-11 font-bold xl:text-xl rounded-full">Get
+                    Started</button>
+            </div>
+        </div>
+        <!-- Akhir Transforms Your Brands -->
+
+        <!-- Footer -->
+        <footer class="w-full px-6 lg:px-32 xl:px-0">
+            <div class="max-w-[1180px] w-full mx-auto">
+                <div class="w-full py-16 space-y-10 text-center bg-[#2563EB] rounded-2xl">
+                    <h1
+                        class="px-8 lg:px-0 text-xl lg:text-3xl xl:text-4xl font-bold lg:leading-tight xl:leading-tight text-white">
+                        Subscribe to our newsletter</h1>
+                    <div class="flex flex-col lg:flex-row lg:items-center gap-4 w-full lg:w-[70%] mx-auto px-8">
+                        <input type="text" class="flex-1 input w-full" placeholder="First Name" />
+                        <input type="text" class="flex-1 input w-full" placeholder="Email Address" />
+                        <button
+                            class="btn-dark py-3 w-full flex-1 mt-4 lg:mt-0 font-bold rounded-full lg:rounded-lg bg-[#090914] hover:bg-[#15152c] ">Subscribe
+                            Now</button>
+                    </div>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-10 py-10">
+                    <div class="lg:flex-[44%]">
+                        <img src="./asset/img/hi-social-logo-footer.svg" class="h-14 lg:h-16 xl:h-auto" alt="logo hi-social" />
+                        <p class="mt-4 xl:mt-5 text-sm lg:text-base xl:text-xl">HiSocial Digital gives you ease in learning
+                            and improving your skills to become a professional.</p>
+                        <div class="flex justify-center lg:justify-normal gap-4 w-full mt-8">
+                            <div
+                                class="group flex justify-center items-center h-11 w-11 hover:bg-[#2563EB] border-[2px] rounded-full">
+                                <img class="text-white" src="./asset/icon/logo-twitter.svg" alt="logo twitter" /></div>
+                            <div
+                                class="group flex justify-center items-center h-11 w-11 hover:bg-[#2563EB] border-[2px] rounded-full">
+                                <img class="text-white" src="./asset/icon/logo-facebook.svg" alt="logo facebook" /></div>
+                            <div
+                                class="group flex justify-center items-center h-11 w-11 hover:bg-[#2563EB] border-[2px] rounded-full">
+                                <img class="text-white" src="./asset/icon/logo-instagram.svg" alt="logo instagram" /></div>
+                            <div
+                                class="group flex justify-center items-center h-11 w-11 hover:bg-[#2563EB] border-[2px] rounded-full">
+                                <img class="text-white" src="./asset/icon/logo-github.svg" alt="logo github" /></div>
+                        </div>
+                    </div>
+                    <div class="flex lg:flex-[56%] gap-6 lg:gap-0 lg:pl-10">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-[#2563EB]">COMPANY</h4>
+                            <ul class="mt-3 lg:mt-6 space-y-1 text-sm text-[#52525B]">
+                                <li>About</li>
+                                <li>Features</li>
+                                <li>Works</li>
+                                <li>Career</li>
+                            </ul>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-[#2563EB]">HELP</h4>
+                            <ul class="mt-3 lg:mt-6 space-y-1 text-sm text-[#52525B]">
+                                <li>Customer Support</li>
+                                <li>Delivery Details</li>
+                                <li>Terms & Conditions</li>
+                                <li>Privacy Policy</li>
+                            </ul>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-[#2563EB]">RESOURCES</h4>
+                            <ul class="mt-3 lg:mt-6 space-y-1 text-sm text-[#52525B]">
+                                <li>Free eBooks</li>
+                                <li>Development Tutorial</li>
+                                <li>How to - Blog</li>
+                                <li>Youtube Playlist</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="py-4 text-center">
+                    <hr />
+                    <p class="py-4 text-xs lg:text-sm xl:text-base text-gray-500">© 2022 HISOCIAL DIGITAL, ALL RIGHTS
+                        RESERVEDDOWNED BY PT TALENTA SINERGI GROUP</p>
+                </div>
+            </div>
+        </footer>
+        <!-- Akhir Footer -->
+
+    <script src="./script.js"></script>
+</body>
+</html>

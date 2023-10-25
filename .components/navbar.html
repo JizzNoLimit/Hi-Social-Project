@@ -1,0 +1,61 @@
+<!-- Navbar -->
+<nav class="relative">
+    <div class="w-full sticky top-0 h-auto px-6 lg:px-32 xl:px-0 bg-white drop-shadow-navbar z-50">
+        <div
+            class="relative flex items-center justify-between max-w-[1180px] w-full h-[74px] lg:h-20 xl:h-[100px] mx-auto">
+            <img src="./asset/img/hi-social.svg" class="cursor-pointer h-11 lg:h-12 xl:h-14" alt="logo hi-social">
+            <ul class="hidden lg:flex items-center space-x-7 xl:space-x-10">
+                <li class="hover:text-gray-400">
+                    <a href="/">Home</a>
+                </li>
+                <li class="hover:text-gray-400">
+                    <a href="/">Service</a>
+                </li>
+                <li class="hover:text-gray-400">
+                    <a href="/">Portofolio</a>
+                </li>
+                <li class="hover:text-gray-400">
+                    <a href="/">About Us</a>
+                </li>
+                <li>
+                    <a href="/">
+                        <button
+                            class="bg-blue-500 px-4 py-2 ml-6 text-white rounded-full hover:bg-blue-600 active:bg-blue-700">Contact
+                            Us</button>
+                    </a>
+                </li>
+            </ul>
+            <button class="menu-btn lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-7 h-7">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div
+        class="nav-menu fixed w-screen h-[calc(100vh-74px)] lg:hidden left-0 right-0 -top-[100vh] px-6 py-8 bg-white z-40 opacity-40 transition-all duration-700">
+        <ul class="font-bold space-y-2">
+            <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                <a href="#">Home</a>
+            </li>
+            <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                <a href="#">Service</a>
+            </li>
+            <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                <a href="#">Portofolio</a>
+            </li>
+            <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                <a href="#">About Us</a>
+            </li>
+            <li class="pt-8">
+                <a href="#">
+                    <button
+                        class="bg-blue-500 w-full lg:w-auto px-4 py-2 text-white rounded-full hover:bg-blue-600 active:bg-blue-700">Contact
+                        Us</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
