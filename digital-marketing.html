@@ -44,6 +44,10 @@
                     fontFamily: {
                         "plus-jakarta-sans": "Plus Jakarta Sans",
                         "inter": "Inter",
+                        "CabinetGrotesk-Regular": "CabinetGrotesk-Regular",
+                        "CabinetGrotesk-Medium": "CabinetGrotesk-Medium",
+                        "CabinetGrotesk-Bold": "CabinetGrotesk-Bold",
+                        "CabinetGrotesk-Extrabold": "CabinetGrotesk-Extrabold",
                     },
                     dropShadow: {
                         navbar: '0px 5px 20px rgba(0, 0, 0, 0.17)',
@@ -54,15 +58,50 @@
         }
     </script>
 
-    <!-- Tailwind Style -->
     <style type="text/tailwindcss">
         @layer base {
             h1,h2,h3,h4,h5,h6 {
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                font-weight: 700;
+                @apply font-CabinetGrotesk-Bold
             }
-            p, a, span, li { font-family: 'Inter', sans-serif; }
+            p, a, li { font-family: 'Inter', sans-serif; }
             button {font-weight: 700;}
+
+            @font-face {
+                font-family: 'CabinetGrotesk-Regular';
+                src: url('./fonts/CabinetGrotesk-Regular.woff2') format('woff2'),
+                url('./fonts/CabinetGrotesk-Regular.woff') format('woff'),
+                url('./fonts/CabinetGrotesk-Regular.ttf') format('truetype');
+                font-weight: 400;
+                font-display: swap;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'CabinetGrotesk-Medium';
+                src: url('./fonts/CabinetGrotesk-Medium.woff2') format('woff2'),
+                url('./fonts/CabinetGrotesk-Medium.woff') format('woff'),
+                url('./fonts/CabinetGrotesk-Medium.ttf') format('truetype');
+                font-weight: 500;
+                font-display: swap;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'CabinetGrotesk-Bold';
+                src: url('./fonts/CabinetGrotesk-Bold.woff2') format('woff2'),
+                url('./fonts/CabinetGrotesk-Bold.woff') format('woff'),
+                url('./fonts/CabinetGrotesk-Bold.ttf') format('truetype');
+                font-weight: 700;
+                font-display: swap;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'CabinetGrotesk-Extrabold';
+                src: url('./fonts/CabinetGrotesk-Extrabold.woff2') format('woff2'),
+                url('./fonts/CabinetGrotesk-Extrabold.woff') format('woff'),
+                url('./fonts/CabinetGrotesk-Extrabold.ttf') format('truetype');
+                font-weight: 800;
+                font-display: swap;
+                font-style: normal;
+            }
         }
 
         @layer components {
@@ -73,16 +112,22 @@
                 @apply bg-white border border-blue-500 text-blue-500 px-3 py-2 ;
             }
             .btn-blue {
-                @apply bg-blue-500 px-4 py-2  hover:bg-blue-600 active:bg-blue-700 text-white;
+                @apply bg-blue-500 px-4 py-3  hover:bg-blue-600 active:bg-blue-700 text-white;
             }
             .btn-dark {
-                @apply bg-blue-500 px-4 py-2  hover:bg-blue-600 active:bg-blue-700 text-white;
+                @apply bg-blue-500 px-4 py-3  hover:bg-blue-600 active:bg-blue-700 text-white;
             }
             .btn-yellow {
-                @apply bg-yellow-500 px-3 py-2  hover:bg-yellow-600 active:bg-yellow-700 text-white;
+                @apply bg-yellow-500 px-3 py-3  hover:bg-yellow-600 active:bg-yellow-700 text-white;
             }
             .btn-white {
-                @apply bg-white px-3 py-2  hover:bg-gray-100 active:bg-gray-200;
+                @apply bg-white px-3 py-3  hover:bg-gray-100 active:bg-gray-200;
+            }
+            .liquid-after {
+                @apply after:absolute after:content-[''] after:w-[140px]  after:rounded-br-[24%] after:-rotate-[12deg] after:h-[140px] after:shadow-[10px_60px_0px_rgba(0,143,255,1)] after:right-[176px] after:-bottom-[15px]
+            }
+            .liquid-before {
+                @apply before:absolute before:content-[''] before:w-[140px]  before:rounded-br-[24%] before:rotate-[12deg] before:h-[140px] before:shadow-[60px_10px_0px_rgba(0,143,255,1)] before:-right-[15px] before:bottom-[176px] before:z-10
             }
         }
     </style>
@@ -91,7 +136,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="w-full sticky top-0 h-auto px-6 lg:px-32 xl:px-0 bg-white drop-shadow-navbar z-50">
+    <nav class="w-full sticky top-0 h-auto px-5 lg:px-32 xl:px-0 bg-white drop-shadow-navbar z-50">
             <div class="relative flex items-center justify-between max-w-[1180px] w-full h-[74px] lg:h-20 xl:h-[100px] mx-auto">
                 <img 
                     src="./asset/img/hi-social.svg"
@@ -124,23 +169,23 @@
                 </button>
             </div>
         </nav>
-        <div class="nav-menu fixed w-screen h-[calc(100vh-74px)] lg:hidden left-0 right-0 -top-[100vh] px-6 py-8 bg-white z-40 opacity-40 transition-all duration-700">
+        <div class="nav-menu fixed w-screen h-auto lg:hidden left-0 right-0 -top-[100vh] px-5 py-8 bg-white/[.6] backdrop-blur z-40 opacity-40 transition-all duration-700">
             <ul class="font-bold space-y-2">
-                <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                <li class="pb-2 hover:text-gray-400">
                     <a href="#">Home</a>
                 </li>
-                <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                <li class="pb-2 hover:text-gray-400">
                     <a href="#">Service</a>
                 </li>
-                <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                <li class="pb-2 hover:text-gray-400">
                     <a href="#">Portofolio</a>
                 </li>
-                <li class="pb-2 hover:text-gray-400 border-b border-b-white hover:border-b-gray-300">
+                <li class="pb-2 hover:text-gray-400">
                     <a href="#">About Us</a>
                 </li>
                 <li class="pt-8">
                     <a href="#">
-                        <button class="bg-blue-500 w-full lg:w-auto px-4 py-2 text-white rounded-full hover:bg-blue-600 active:bg-blue-700">Contact Us</button>
+                        <button class="bg-blue-500 w-full lg:w-auto px-4 py-3 text-white rounded-full hover:bg-blue-600 active:bg-blue-700">Contact Us</button>
                     </a>
                 </li>
             </ul>
@@ -154,11 +199,11 @@
                 class="relative w-full h-full object-cover object-center z-10"
                 alt="gambar hero"
             >
-            <div class="absolute flex flex-col justify-center h-[80%] px-6 lg:px-0 text-left inset-y-0 my-auto font-plus-jakarta-sans md:text-center space-y-4 lg:space-y-6 xl:space-y-9 z-20">
-                <h1 class="text-3xl lg:text-5xl xl:text-6xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">Unlock Your Business's Full Potential<br class="hidden md:block"/>with a<span class="text-p-normal"> Customized Digital Marketing <br class="hidden md:block"/>Strategy</span></h1>
-                <p class="md:w-[70%] md:mx-auto font-normal leading-relaxed lg:leading-normal lg:text-xl xl:text-2xl">Welcome to Hisocial – Your Partner in Digital Marketing Success!<br/> In today's fast-paced digital landscape, a strong online presence is a necessity, and we're here to help you thrive with a tailored digital marketing strategy.</p>
+            <div class="absolute flex flex-col justify-center h-[80%] px-6 lg:px-0 text-left inset-y-0 my-auto md:text-center space-y-4 lg:space-y-6 xl:space-y-7 z-20">
+                <h1 class="text-3xl lg:text-5xl xl:text-6xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">Unlock Your Business's Full Potential<br class="hidden md:block"/>with a<span class="text-p-normal"> Customized Digital Marketing Strategy</span></h1>
+                <p class="md:w-[76%] md:mx-auto font-normal leading-relaxed lg:leading-normal text-xs lg:text-lg xl:text-xl">Welcome to Hisocial – Your Partner in Digital Marketing Success!<br/> In today's fast-paced digital landscape, a strong online presence is not just an option; it's a necessity. To thrive and succeed in the competitive digital world, you need a tailored digital marketing strategy that aligns perfectly with your business goals and objectives. That's where we come in!</p>
                 <div>
-                    <button class="btn-blue w-full md:w-auto lg:px-14 lg:py-3 xl:px-16 xl:py-4 mt-12 lg:mt-6 xl:mt-8 font-bold xl:text-xl rounded-full lg:rounded-xl">Get Started</button>
+                    <button class="btn-blue w-full md:w-auto lg:px-16 lg:py-3 xl:px-20 xl:py-4 mt-3 lg:mt-4 xl:mt-5 font-bold xl:text-xl rounded-full lg:rounded-xl">Get Started</button>
                 </div>
             </div>
         </div>
@@ -168,7 +213,7 @@
     <div class="relative w-full h-64 xl:h-[260px] bg-p-dark-hover overflow-hidden">
         <div class="absolute top-0 left-0 w-[1640px] h-[820px] xl:w-[1899px] xl:h-[949px] rounded-[50%] bg-[#005699] z-10"></div>
         <div class="relative flex flex-col justify-center w-full h-full px-6 md:px-0 text-center space-y-8 z-20 text-white">
-            <p class="text-lg lg:text-xl xl:text-2xl">We Have Collaborated With Companies And Educational Agencies.</p>
+            <p class="lg:text-lg xl:text-2xl">We Have Collaborated With Companies And Educational Agencies.</p>
             <div class="grid grid-cols-2 gap-8 md:flex justify-center md:space-x-8">
                 <img src="./asset/img/sisko-logo.png" class="h-8 md:h-auto mx-auto md:mx-0" alt="logo elvron" />
                 <img src="./asset/img/eduwork-logo.png" class="h-8 md:h-auto mx-auto md:mx-0" alt="logo eduwork" />
@@ -180,7 +225,7 @@
     <!-- Akhir Corporate Colaboration -->
 
     <!-- Strategy Approach -->
-    <div class="w-full px-6 md:px-32 xl:px-0 py-11 lg:py-14 mt-14 xl:mt-16">
+    <div class="w-full px-6 md:px-32 xl:px-0 pt-12 pb-8 lg:py-14 xl:mt-16">
         <div class="flex flex-col lg:flex-row lg:items-center lg:gap-12 max-w-[1180px] w-full mx-auto">
             <div class="flex-1">
                 <h1 class="text-2xl lg:text-4xl xl:text-5xl font-bold lg:leading-tight xl:leading-tight text-pb-normal-active">The Power of a Strategic Approach</h1>
@@ -245,7 +290,7 @@
     <!-- Akhir Strategy Approach -->
 
     <!-- Tailored Approach -->
-    <div class="w-full px-6 md:px-32 xl:px-0 py-14">
+    <div class="w-full px-6 md:px-32 xl:px-0 py-8 lg:py-14">
         <div class="flex flex-col lg:flex-row lg:items-center lg:gap-12 max-w-[1180px] w-full mx-auto">
             <div class="flex-1 hidden md:block">
                 <div class="flex flex-col gap-5">
@@ -307,18 +352,35 @@
     </div>
     <!-- Akhir Tailored Approach -->
 
+    <!-- Our Success Project -->
+    <div class="flex justify-center w-full p-8 bg-blue-500">
+        <div 
+            class="flex flex-col liquid-after liquid-before relative w-[442px] h-[500px] scale-75 bg-white rounded-br-[20%] rounded-3xl  overflow-hidden"
+        >
+            <div class="absolute bottom-0 right-0 w-[180px] h-[180px] p-3 bg-blue-500 rounded-br-[50%] rounded-[50%] z-10">
+                <button class="relative w-full h-full bg-white rounded-full z-10"></button>
+                <div class="w-full h-full rounded-full after:absolute after:bottom-0 after:left-5 after:content-[''] after:w-[58px] after:h-[40px] after:bg-blue-500 before:absolute before:right-0 before:top-5 before:content-[''] before:h-[58px] before:w-[40px] before:bg-blue-500 z-0"></div>
+            </div>
+            <div class="flex-[20%]"></div>
+            <div class="relative flex-[80%] w-full h-full z-0">
+                    <img src="./asset/img/our-success-project1.png" class="absolute w-full h-full object-cover" alt="gambar our success project" />
+            </div>
+        </div>
+    </div>
+    <!-- Akhir Our Success Project -->
+
     <!-- Why You Can Expect -->
-    <div class="w-full px-6 lg:px-32 xl:px-0 pt-11 lg:pt-14">
+    <div class="w-full px-6 lg:px-32 xl:px-0 pt-8 lg:pt-20">
         <div
-            class="relative flex flex-col flex-col-reverse lg:flex-row gap-6 max-w-[1180px] w-full mx-auto px-8 py-12 bg-[#E6F1FA] rounded-2xl overflow-hidden lg:overflow-visible">
+            class="relative flex flex-col flex-col-reverse lg:flex-row gap-6 max-w-[1180px] w-full mx-auto px-8 pt-12 pb-14 bg-[#E6F1FA] rounded-2xl overflow-hidden lg:overflow-visible">
             <img src="./asset/img/you-can-expect-shape.svg"
                 class="absolute lg:top-0 lg:bottom-0 right-0 lg:right-0 h-[200px] max-w-none lg:max-w-full lg:h-full z-0"
                 alt="texture" />
-            <div class="lg:absolute lg:-top-[20%] lg:right-[4%] space-y-2 lg:space-y-4">
-                <img src="./asset/img/you-can-expect1.svg" class=" lg:h-[106px] xl:h-auto drop-shadow-[-4px_4px_8px_rgba(0,0,0,0.25)]"
+            <div class="lg:absolute lg:-top-[26%] lg:-right-[5%] space-y-2 lg:space-y-4">
+                <img src="./asset/img/you-can-expect1.svg" class=" lg:h-[106px] xl:h-auto lg:-translate-x-[60%] drop-shadow-[-4px_4px_8px_rgba(0,0,0,0.25)]"
                     alt="gambar client say" />
                 <img src="./asset/img/you-can-expect2.svg"
-                    class="lg:h-[106px] xl:h-auto lg:-translate-x-[60%] drop-shadow-[-4px_4px_8px_rgba(0,0,0,0.25)]"
+                    class="lg:h-[106px] xl:h-auto drop-shadow-[-4px_4px_8px_rgba(0,0,0,0.25)]"
                     alt="gambar client say" />
             </div>
             <div class="relative flex-1 z-10">
