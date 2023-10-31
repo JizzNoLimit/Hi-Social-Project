@@ -7,3 +7,16 @@ MENU_BTN.addEventListener('click', () => {
     NAV_MENU.classList.toggle('opacity-100')
     NAV_MENU.classList.toggle('opacity-40')
 })
+
+
+let swiper = new Swiper('.swiper', {
+    grabCursor: true,
+    centeredSlides: true,
+    loop: true,
+    spaceBetween: 24,
+    breakpoints: {
+        1024: {
+            slidesPerView: 3
+        }
+    },
+})
