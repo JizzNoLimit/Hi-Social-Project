@@ -9,14 +9,14 @@ MENU_BTN.addEventListener('click', () => {
 })
 
 
-let swiper = new Swiper('.swiper', {
-    grabCursor: true,
-    centeredSlides: true,
-    loop: true,
-    spaceBetween: 24,
-    breakpoints: {
-        1024: {
-            slidesPerView: 3
-        }
-    },
-})
+// let swiper = new Swiper('.swiper', {
+//     grabCursor: true,
+//     centeredSlides: true,
+//     loop: true,
+//     spaceBetween: 24,
+//     breakpoints: {
+//         1024: {
+//             slidesPerView: 3
+//         }
+//     },
+// })
